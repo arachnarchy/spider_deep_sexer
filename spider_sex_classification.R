@@ -1,6 +1,6 @@
 # This is a simple convnet approach to identify whether a spider in
 # a top-down cropped photo is male or female. This is with frame by frame video
-# analysis in mind, where a fast and reliable way to id the sex of "blobs" 
+# analysis in mind, where a fast and reliable way to id the sex of 'blobs' 
 # within the video can be helpful (for instance when a tracking program switches 
 # the identity of a subject after a close interaction). 
 # Currently working with Habronattus pyrrithrix at >98% accuracy.
