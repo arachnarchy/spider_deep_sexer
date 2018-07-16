@@ -186,17 +186,3 @@ test_generator <- flow_images_from_directory(
 )
 
 model %>% evaluate_generator(test_generator, steps = 50)
-
-## Classify a specific image --------------------------------------------------------
-
-# load image and transform to 150x150
-img_path <- "example.png"
-img <- image_load(img_path, target_size = c(150, 150))
-img_tensor <- image_to_array(img)
-img_tensor <- array_reshape(img_tensor, c(1, 150, 150, 3))
-img_tensor <- img_tensor / 255
-
-plot(as.raster(img_tensor[1,,,]))
-
-# Classify: 0 is female, 1 is male
-model %>% predict(img_tensor)
