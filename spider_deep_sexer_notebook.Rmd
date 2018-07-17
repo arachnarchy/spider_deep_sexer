@@ -3,9 +3,7 @@ title: "Determine jumping spider sex with a ConvNet"
 output: html_notebook
 ---
 
-This is a simple CNN (convolutional neural network) approach to identify whether a spider in a top-down cropped photo is male or female. This was written with behavioral video tracking in mind, where a fast and reliable way to id the sex of 'blobs' within video frames can be helpful (for instance when a tracking program switches the identity of a subject after a close interaction). Currently working with the model species _Habronattus pyrrithrix_ at >96% accuracy, can be further pushed by retraining the model with a larger batch of training images, adapted to a different species, or extended to work across species with a sufficiently large training image set.
-
-_(Based on the excellent "Deep Learning in R" by F Chollet and JJ Allaire)_
+This is a simple CNN (convolutional neural network) approach to identify whether a spider in a top-down cropped photo is male or female. I wrote this with behavioral video tracking in mind, where a fast and reliable way to id the sex of 'blobs' within video frames can be helpful (for instance when a tracking program switches the identity of a subject after a close interaction). The approach is mostly based on the excellent "Deep Learning in R" by F Chollet and JJ Allaire. Currently working with my model species _Habronattus pyrrithrix_ at >96% accuracy, can be further pushed by retraining the model with a larger batch of training images, adapted to a different species, or extended to work across species with a sufficiently large training image set.
 
 ## Setting up a new image classification CNN from scratch
 Load required packages.
@@ -21,8 +19,8 @@ theme_set(theme_bw())
 ### Split images into training, validation, and test sets
 Images from both sexes should be in a single folder, with file names like e.g. "male.27.png". This chunk will create a folder structure that can be fed to the network later.
 ```{r}
-original_dataset_dir <- "hapy2"
-base_dir <- "hapy2_small"
+original_dataset_dir <- "hapy"
+base_dir <- "hapy_small"
 dir.create(base_dir)
 
 train_dir <- file.path(base_dir, "train")
@@ -225,7 +223,7 @@ model %>% save_model_hdf5("hapy_sexer.h5")
 ## Applying the model to a new image
 Now for the payoff, determining the sex of a spider in a new image that wasn't part of the training set. First we load the image and transform it into a tensor that can be inserted into the model:
 ```{r}
-img_path <- "hapym.png" 
+img_path <- "demo images/hapym.png" 
 
 img <- image_load(img_path, target_size = c(150, 150))
 img_tensor <- image_to_array(img)
