@@ -198,7 +198,7 @@ Plot the training results
 plot(history)
 ```
 
-## Testing model accuracy on novel images
+### Testing model accuracy on novel images
 Here we unleash our model on the test images we set aside in the beginning. It should be fairly accurate.
 ```{r}
 test_generator <- flow_images_from_directory(
@@ -212,7 +212,7 @@ test_generator <- flow_images_from_directory(
 model %>% evaluate_generator(test_generator, steps = 50)
 ```
 
-## Saving the trained model
+### Saving the trained model
 Let's save the model weights so we don't have to re-train the model in the future.
 ```{r}
 if(!file.exists("hapy_sexer.h5")){
