@@ -1,2 +1,3 @@
+$ cat .gitattributes
 * linguist-vendored
 *.R linguist-vendored=false
