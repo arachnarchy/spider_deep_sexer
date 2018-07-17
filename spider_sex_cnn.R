@@ -174,7 +174,9 @@ history <- model %>% fit_generator(
 )
 
 # save out model weights if desired
-# model %>% save_model_hdf5("hapy_sexer.h5") 
+if(!file.exists("hapy_sexer.h5")){
+  model %>% save_model_hdf5("hapy_sexer.h5") 
+}
 
 ## run on test data -----
 test_generator <- flow_images_from_directory(
